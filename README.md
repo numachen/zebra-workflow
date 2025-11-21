@@ -1,6 +1,24 @@
 # ZebraWorkflow
 
-### 项目：基于 go-zero 的 HTTP + Temporal 工作流引擎，实现通过 HTTP 触发与管理工作流。
+ZebraWorkflow 是一个基于 go-zero 框架的 HTTP + Temporal 工作流引擎项目。该项目通过 HTTP 接口触发和管理工作流执行，支持 DSL（领域特定语言）定义工作流逻辑。项目提供了完整的工作流编排能力，包括活动（Activity）的注册、顺序执行、参数传递和结果返回。支持多种部署方式，包括本地开发和 Docker Compose 容器化部署，并提供 Swagger 文档和日志记录功能。
+
+### 主要功能点
+- 基于 HTTP 的工作流启动和管理接口
+- DSL 工作流定义和执行引擎
+- Temporal 分布式工作流框架集成
+- 活动（Activity）注册和管理机制
+- 顺序执行（Sequence）的工作流编排
+- Swagger API 文档支持
+- 日志记录和追踪功能
+- 多部署方式支持（本地开发、Docker Compose）
+
+### 技术栈
+- 语言：Go 100%
+- 核心框架：go-zero（微服务框架）、Temporal（分布式工作流）
+- 日志库：Zap（uber-go/zap）
+- 配置管理：fsnotify（文件系统监听）
+- 容器化：Docker Compose
+- API 文档：Swagger
 
 ### 项目初始化
 ```shell
