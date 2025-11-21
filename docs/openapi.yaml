@@ -1,0 +1,91 @@
+openapi: "3.0.0"
+info:
+  title: Zebra Workflow API
+  version: "0.1.0"
+tags:
+  - name: Workflow Management
+    description: 工作流管理相关接口
+  - name: Workflow Execution
+    description: 工作流执行相关接口
+paths:
+  /v1/workflow/start:
+    post:
+      tags:
+        - Workflow Execution
+      summary: Start a workflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: workflow name
+                version:
+                  type: string
+                  description: optional workflow version; omit to use default
+                input:
+                  type: object
+                  description: workflow input payload
+      responses:
+        '200':
+          description: started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workflowId:
+                    type: string
+                  runId:
+                    type: string
+  /v1/workflow/{workflowId}/status:
+    get:
+      tags:
+        - Workflow Management
+      summary: Query workflow status
+      parameters:
+        - name: workflowId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workflowId: { type: string }
+                  runId: { type: string }
+                  status: { type: string }
+                  detail: { type: object }
+  /v1/workflow/{workflowId}/signal:
+    post:
+      tags:
+        - Workflow Execution
+      summary: Send signal to running workflow
+      parameters:
+        - name: workflowId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                signalName:
+                  type: string
+                payload:
+                  type: object
+      responses:
+        '200':
+          description: ok

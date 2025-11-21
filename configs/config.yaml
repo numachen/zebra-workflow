@@ -1,0 +1,24 @@
+app:
+  name: zebra-workflow
+http:
+  addr: ":8888"
+
+temporal:
+  hostPort: "127.0.0.1:7233"
+  namespace: "default"
+  defaultTaskQueue: "zebra-task-queue"
+
+# Logging configuration
+logging:
+  # log level: debug, info, warn, error
+  level: "debug"
+  # encoding: "json" or "console"
+  encoding: "json"
+  # outputs: array of output paths. "stdout" and "stderr" are special names.
+  # You can also specify file paths, e.g. "logs/app.log"
+  outputs:
+    - "stdout"
+    - "logs/app.log"
+
+monitor:
+  prometheusAddr: ":9090"
